@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>并发编程</title>
+      <link href="/2025/11/26/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+      <url>/2025/11/26/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><ul><li>程序由指令和数据组成，但这些指令要运行，数据要读写，就必须将指令加载至CPU，数据加载至内存。在指令运行过程中还需要用到磁盘、网络等设备。进程就是用来加载指令、管理内存、管理IO的。</li><li>当一个程序被运行，从磁盘加载这个程序的代码至内存，这是就开启了一个进程。</li><li>进程就可以视为程序的一个实例。大部分程序可以同时运行多个实例进程（例如记事本、画图、浏览器等)，也有的程序只能启动一个实例进程（例如网易云音乐、360安全卫士等。</li></ul><h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><ul><li>一个进程之内可以分为一到多个线程。</li><li>一个线程就是一个指令流，将指令流中的一条条指令以一定的顺序交给CPU执行。</li><li>Java中，线程作为最小的调度单位，进程作为资源分配的最小单位。在windows中进程是不活动的，只是作为线程的容器。</li></ul><h3 id="二者区别"><a href="#二者区别" class="headerlink" title="二者区别"></a>二者区别</h3><ul><li>进程基本上相互独立的，而线程存在于进程内，是进程的一个子集；</li><li>进程拥有共享的资源，如内存空间等，供其内部的线程共享；</li><li>进程间通信较为复杂<ul><li>同一台计算机的进程通信称为IPC(Inter-process communication)；</li><li>不同计算机之间的进程通信，需要通过网络，并遵守共同的协议，例如HTTP；</li></ul></li><li>线程通信相对简单，因为它们共享进程内的内存，一个例子是多个线程可以访问同一个共享变量；</li><li>线程更轻量，线程上下文切换成本一般上要比进程上下文切换低。</li></ul><h2 id="并发与并行"><a href="#并发与并行" class="headerlink" title="并发与并行"></a>并发与并行</h2><p>​单核cpu下，线程实际还是行执行的。操作系统中有一个组件叫做任务调度器，将cpu的时间片(windows下时间片最小约为15毫秒)分给不同的线程使用，只是由于cpu在线程间（时间片很短）的切换非常快，人类感觉是同时运行的。总结为一句话就是：微观串行，宏观并行。</p><p>​一般将这种线程轮流使用CPU的做法称为并发，concurrent。</p><ul><li>并发（concurrent）是同一时间应对（dealing with）多件事情的能力；</li><li>并行（parallel）是同一时间动手做（doing）多件事情的能力。</li></ul><h2 id="原理之线程运行"><a href="#原理之线程运行" class="headerlink" title="原理之线程运行"></a>原理之线程运行</h2><h3 id="栈与栈帧"><a href="#栈与栈帧" class="headerlink" title="栈与栈帧"></a>栈与栈帧</h3><p>我们都知道JVM中由堆、栈、方法区所组成，其中栈内存是给谁用的呢？其实就是线程，每个线程启动后，虚拟机就会为其分配一块栈内存。</p><ul><li>每个栈由多个栈帧组成，对应着每次方法调用时所占用的内存；</li><li>每个线程只能有一个活动栈帧，对应着当前正在执行的那个方法。</li></ul><h3 id="线程上下文切换"><a href="#线程上下文切换" class="headerlink" title="线程上下文切换"></a>线程上下文切换</h3><p>因为以下一些原因导致cpu不再执行当前的线程，转而执行另一个线程代码</p><ul><li>线程的cpu时间片用完</li><li>垃圾回收</li><li>有更高优先级的线程需要运行</li><li>线程自己调用了sleep、yield、wait、join、park、上一年chronized、lock等方法程序</li></ul><p><img src="/2025/11/26/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20251126172244106.jpg" alt="image-20251126172244106"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客搭建技巧</title>
+      <link href="/2025/11/20/%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7/"/>
+      <url>/2025/11/20/%E5%8D%9A%E5%AE%A2%E6%8A%80%E5%B7%A7/</url>
+      
+        <content type="html"><![CDATA[<h1 id="博客技巧"><a href="#博客技巧" class="headerlink" title="博客技巧"></a>博客技巧</h1><h2 id="hexo相关指令"><a href="#hexo相关指令" class="headerlink" title="hexo相关指令"></a>hexo相关指令</h2><h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><blockquote><p>hexo init [folder]</p></blockquote><p>新建一个网站。如果没有设置<font color="red">folder</font>，hexo会默认在当前的文件夹中建立网站。</p><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><blockquote><p>hexo new [layout] <title></title></p></blockquote><p>新建一篇文章。</p><table><thead><tr><th>选项</th><th>描述</th></tr></thead><tbody><tr><td>-p, –path</td><td>文章的路径。自定义文章的路径</td></tr><tr><td>-r, –replace</td><td>如果存在的话。替换当前的文章</td></tr><tr><td>-s, –slug</td><td>文章别名。自定义文章的URL</td></tr></tbody></table><h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><blockquote><p>hexo generate</p></blockquote><p>生成静态文件。</p><h3 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h3><blockquote><p>hexo publish [layout] <filename></filename></p></blockquote><p>发表草稿。</p><h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><blockquote><p>hexo server</p></blockquote><p>启动服务器。</p><table><thead><tr><th>选项</th><th>描述</th></tr></thead><tbody><tr><td>-p, –port</td><td>重设端口</td></tr><tr><td>-s, –static</td><td>只使用静态文件</td></tr><tr><td>-l, –log</td><td>启用日志</td></tr></tbody></table><h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><blockquote><p>hexo deploy</p></blockquote><p>部署网站。</p><table><thead><tr><th>选项</th><th>描述</th></tr></thead><tbody><tr><td>-g, –generate</td><td>在部署前生成</td></tr></tbody></table><h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><blockquote><p>hexo render <file1> [file2]…</file1></p></blockquote><p>渲染文件</p><h3 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h3><blockquote><p>hexo migrate <type></type></p></blockquote><p>从其他博客系统迁移内容。</p><h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><blockquote><p>hexo clean</p></blockquote><p>清除缓存文件和已生成的静态文件</p><h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><blockquote><p>hexo list <type></type></p></blockquote><p>列出所有路由。</p><h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><blockquote><p>hexo version</p></blockquote><p>显示版本信息。</p><h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><blockquote><p>hexo config [key] [value]</p></blockquote><p>列出网站的配置。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
